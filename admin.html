@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin felület</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-sm-8">
+                <p class="h2">Webáruház</p>
+            </div>
+            <div class="col-sm-4">
+                <a class="nav-link" href="index.html">Publikus oldal</a>
+            </div>
+        </div>
+        <aside>
+            <fieldset class="form-horizontal">
+                <legend>Fetöltő űrlap új termékekhez</legend>
+                <div class="form-group p-2">
+                    <p>Neve:</p>
+                    <input type="text" class="form-control" name="nev" id="nev" placeholder="Póló neve">
+                </div>
+                <div class="form-group p-2">
+                    <p>Kép:</p>
+                    <input type="button" class="form-control" value="Tallózás..">
+                </div>
+                <div class="checkbox p-2">
+                    <p>Mérete:</p>
+                    <label for="S"><input type="checkbox" name="meret" id="S"> S</label>
+                    <label for="M"><input type="checkbox" name="meret" id="M"> M</label>
+                    <label for="L"><input type="checkbox" name="meret" id="L"> L</label>
+                    <label for="XL"><input type="checkbox" name="meret" id="XL"> XL</label>
+                    <label for="XXL"><input type="checkbox" name="meret" id="XXL"> XXL</label>
+                </div>
+                <div class="form-group p-2">
+                    <p>Ára:</p>
+                    <input type="text" class="form-control" name="ar" id="penz" placeholder="X Ft">
+                </div>
+                <div class="form-group p-2">
+                    <p>Leírása:</p>
+                    <input type="text" name="leiras" id="szoveg" placeholder="Írd ide a póló leírását..." class="form-control">
+                </div>
+                <div class="form-group p-2">
+                    <label for="db">Raktáron:</label>
+                    <input type="number" class="form-control" name="db" id="db" min="0" max="200" value="0">
+                </div>
+                <div class="form-group">
+                    <div class=" col-sm-offset-2 col-sm-10 p-3">
+                        <input type="submit" class="btn" value="Küldés">
+                    </div>
+                </div>
+            </fieldset>
+        </aside>
+        <article>
+            <h2>Jelenlegi táblázat</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>ID</th>
+                        <th>Név</th>
+                        <th>Kép</th>
+                        <th>Méret</th>
+                        <th>Ár</th>
+                        <th>Leírás</th>
+                        <th>Készlet (db)</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Retro Gamer férfi póló</td>
+                        <td><img class="img-thumbnail" src="kepek/polo1.jpg" alt="retró póló"></td>
+                        <td>S, M, L, XL, XXL</td>
+                        <td>6990 Ft</td>
+                        <td>A pólódat kifordítva 30 fokon, szárítógép használata nélkül mosd ki, így vigyázva a 100% pamut szövet és a nyomat minőségére.</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Túléltem még egy meetinget</td>
+                        <td><img class="img-thumbnail" src="kepek/polo2.jpg" alt="túléltem"></td>
+                        <td>S, M, L, XL, XXL</td>
+                        <td>5990 Ft</td>
+                        <td>Legnépszerűbb prémium pólónk, ami garantáltan a kedvenced lesz!</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Az éveim múlásával</td>
+                        <td><img class="img-thumbnail" src="kepek/polo3.jpg" alt="éveim múlásával póló"></td>
+                        <td>S, M, L, XL, XXL</td>
+                        <td>6990 Ft</td>
+                        <td>Vicces póló , vicces ajándék, szülinapi ajándék!</td>
+                        <td>49</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>I hate morning people</td>
+                        <td><img class="img-thumbnail" src="kepek/polo4.jpg" alt="I hate morning people póló"></td>
+                        <td>S, M, L, XL, XXL</td>
+                        <td>4990 Ft</td>
+                        <td>Divatos póló, akár hétköznapi viseletként is megállja a helyét , nagyon jó minőségű anyaga miatt. Az általunk gyártott pólóknál nem kell attól tartanod, hogy kinyúlik az anyag, kifakul, vagy berepedezik a minta. Anyaga 100% Pamut Mérettáblázatot a képek között találsz. 25 féle szín közül választhatsz!</td>
+                        <td>113</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Képzeld el az életet</td>
+                        <td><img class="img-thumbnail" src="kepek/polo5.jpg" alt="Képzeld el az életet... póló"></td>
+                        <td>S, M, L, XL, XXL</td>
+                        <td>4990 Ft</td>
+                        <td>A hosszított fazon és a vékony, 146 g/m2 anyagvastagság garantálja a kényelmes viseletet. 100% gyűrűs fonású fésült pamutból készül, válltól vállig megerősített és beszegett nyakkivágással. Emellett a dupla tűzésű karkivágás és derékrész biztosítja a kiváló minőséget és formatartást.</td>
+                        <td>90</td>
+                    </tr>
+                </table>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
