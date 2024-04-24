@@ -1,0 +1,15 @@
+header{
+    width: 100%;
+}
+header h1{
+    margin-left: 12px;
+}
+.admin-link{
+    display: block;
+    float: right;
+    margin: auto;
+}
+header{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
