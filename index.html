@@ -6,25 +6,37 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Szabó Mester Alex, Szabó Roland">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+          crossorigin="anonymous"
+    >
     <link rel="stylesheet" href="style.css">  
     <title>BSWebaruhaz - Kezdőlap</title>
 </head>
 <body>
-    <header><h1 class="ml-1">Webáruház</h1> <a href="admin.html" class="text-success admin-link">Admin felület</a></header>
-    <nav class="navbar navbar-expand-sm bg-light">
+    <header><h1 class="ml-1">Webáruház</h1>
+        <ul class="navbar-nav">
+            
+        </ul>
+    </header>
+    <nav class="navbar bg-light">
         <div class="container-fluid">
             <!-- Links -->
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link text-success" href="#">Termékeink</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-success" href="#">Kosár</a>
-              </li>
-              <li class="nav-item text-success">
-                <a class="nav-link" href="#">Személyes adatok</a>
-              </li>
+                <li class="nav-item col-md-2">
+                    <a class="nav-link text-success" href="#">Termékeink</a>
+                </li>
+                <li class="nav-item  col-md-2 text-success">
+                    <a class="nav-link" href="#">Személyes adatok</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="admin.html" class="text-success  col-md-2 admin-link">Admin felület</a>
+                </li>
+                <li class="nav-item  col-md-2">
+                    <a class="nav-link text-success" href="#">Kosár</a>
+                </li>
             </ul>
     
     </nav>
@@ -34,19 +46,19 @@
             <fieldset>
                 <legend>Keresési feltételek</legend>
                 <label for="seID">A termék neve</label>
-                <input type="search" name="" id="seID">
+                <input class="col-md-11" type="search" name="" id="seID">
                 <br><label for="etin">Szűrés ár szerint: </label>
-                <input type="range" name="" id="etin">
+                <input class="col-md-11"  type="range" name="" id="etin">
             </fieldset>
            </form>
         </aside>
-        <article class="col-md-7">
+        <article class="col-md-8 termekek">
             <div class="row">
-                <div class="card col-md-4">
+                <div class="card col-md-3 col-sm-6 col-smx-12">
                     <div class="card-header text-success">Kocka</div>
                     <div class="card-body">
                         <img src="kepek/polo1.jpg" class="img-thumbnail" alt="">
-                        <ul>
+                        <ul class = "d-none">
                             <li>Szélesség: 5cm</li>
                             <li>Hosszúság: 5cm</li>
                             <li>Magasság: 5cm</li>
@@ -63,7 +75,7 @@
                 </div>
             </div>
         </article>
-        <aside class="col-md-3">
+        <aside class="col-md-2">
             <h3>Kapcsolódó cikkek 1</h3>
             <p>Lórum ipse egy Machinátor</p>
             <h3>Kapcsolódó cikkek 2</h3>
@@ -73,5 +85,6 @@
     <footer>
 
     </footer>
+    <script src="admin.js" type="module"></script>
 </body>
 </html>
