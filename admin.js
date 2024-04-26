@@ -25,7 +25,7 @@ function kiindul(){
             s += `<div class="row">`;
         }
         s+=`<div class="card col-md-3 col-sm-6 col-smx-12">` +
-                `<div class="card-header text-success">Kocka</div>` +
+                `<div class="card-header text-success">${listofprice[i].termeknev}</div>` +
                 `<div class="card-body">` +
                 ` <img src="kepek/polo1.jpg" class="img-thumbnail" alt="">` +
                     `<ul class = "d-none">` +
