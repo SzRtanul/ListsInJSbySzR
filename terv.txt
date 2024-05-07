@@ -1,0 +1,4 @@
+1. Termékek megjelenítése
+2. Termékek kiválasztása, mennyiség megadása
+3. kosár megjelenítése
+4. fizetési folyamat
