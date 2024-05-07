@@ -38,14 +38,14 @@ function kiindul(){
                 `</div>` +
                 `<div class="card-footer">` +
                     `<div class="row">` +
-                        `<div class="float-md-start">Ár: 6990 Ft</div>` +
+                        `<div class="float-md-start">Ár: ${listofprice[i].ar} Ft</div>` +
                 ` <button class="float-md-end">Kosárba</button>` +
                     `</div>` +
             `</div>` +
             `</div>`;
         leptet++;
         if(leptet == 4){
-            s += `</div">`
+            s += `</div>`
             leptet = 0;
         }
     }
