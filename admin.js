@@ -94,7 +94,7 @@ function kiindul(){
     for(let i = 0; i < listofprice.length; i++){
         let zsindex = letezikparam(listofprice[i].id);
         let idgparam = idkWhyParam(listofprice[i].id);
-        if(szuro(listofprice[i]) && szuroparam/*                */ */){
+        if(szuro(listofprice[i]) && szuroparam/*                */){
             if(leptet == 0){
                 s += `<div class="row">`;
             }
@@ -231,20 +231,21 @@ function imageExists(image_url){
     return http.status != 404;
 }
 
-function szuro(object={
+function szuro(objectMin={
     termeknev: "Háromszög",
     image: "n",
     ar: 6000
 }){
+
     return true;
 }
 
-function szuroparam(object={
-    szelesseg: 13,
-    magassag: 13,
-    hosszusag: 1,
-    anyag: "Fa",
-    tomor: true
+function szuroparam(objectMin={
+    szelesseg: 0,
+    magassag: 0,
+    hosszusag: 0,
+    anyag: "",
+    tomor: false
 }){
     return true;
 }
