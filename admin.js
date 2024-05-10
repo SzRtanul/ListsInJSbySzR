@@ -1,6 +1,6 @@
 "use strict"
 //eventToDivizio() //Event működés tesztelése
-//let listofpriceIDs = [0,1,32]
+let listofpriceIDs = [0,1,32]
 let listofprice = [
     {
         id: 0,
@@ -113,7 +113,7 @@ function kiindul(){
                     `<div class="card-footer">` +
                         `<div class="row">` +
                             `<div class="float-md-start">Ár: ${listofprice[i].ar} Ft</div>` +
-                            ` <button class="float-md-end">Kosárba</button>` +
+                            ` <button class="float-md-end kosarba">Kosárba</button>` +
                         `</div>` +
                     `</div>` +
                 `</div>`;
@@ -153,9 +153,10 @@ function add(price = {
     listofprice.push()
 }
 
-function remove(id = 0){
+function removefromkosar(id = 0){ // Törlés a kosárból
     let index = bennevan(id);
-    if(index >=0) kosar.slice(index);
+    if(index >= 0) kosar.slice(index);
+    kosarFrissit()
 }
 
 function addToKosar(id=-1){
@@ -173,9 +174,13 @@ function kosarFrissit(){
     let s = "";
     for(let i = 0; i < kosar.length; i++){
         let index = letezik(kosar[i].id);
-        s += `<p>${listofprice[index].termeknev} : <input type="number" id="fname" name="fname" value="${kosar[i].menny}"></p>`
+        s += `<p>${listofprice[index].termeknev} : <input type="number" id="fname" name="fname" value="${kosar[i].menny}"> <button class="elemettorol">Töröl</button></p>`
     }
     document.getElementsByClassName("kosar")[0].innerHTML = s;
+    let elemek = document.getElementsByClassName("elemettorol");
+    for(let i = 0; i < elemek; i++){
+        elemek[i].addEventListener("click", function(){ removefromkosar(kosar[i].id) })
+    }
 }
 
 function bennevan(id = -1){
@@ -230,7 +235,7 @@ function imageExists(image_url){
     http.send();
     return http.status != 404;
 }
-
+// Szures
 function szuro(objectMin={
     termeknev: "Háromszög",
     image: "n",
@@ -250,4 +255,13 @@ function szuroparam(objectMin={
     return true;
 }
 
-//szures, rendezes
+// Rendezes
+
+// Segédfüggvények
+
+function mindenhovaodair(osztaly = "", s = ""){
+    let elemek = document.getElementsByClassName(osztaly);
+    for(let i = 0; i < elemek.length; i++){
+        elemek[i].innerHTML = s;
+    }
+}
