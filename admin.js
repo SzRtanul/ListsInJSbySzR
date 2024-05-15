@@ -153,9 +153,10 @@ function add(price = {
     listofprice.push()
 }
 
-function removefromkosar(id = 0){ // Törlés a kosárból
+function removefromkosar(id = -1){ // Törlés a kosárból
     let index = bennevan(id);
-    if(index >= 0) kosar.slice(index);
+    console.log(index)
+    if(index >= 0) kosar.splice(index, 1);
     kosarFrissit()
 }
 
@@ -178,7 +179,7 @@ function kosarFrissit(){
     }
     document.getElementsByClassName("kosar")[0].innerHTML = s;
     let elemek = document.getElementsByClassName("elemettorol");
-    for(let i = 0; i < elemek; i++){
+    for(let i = 0; i < elemek.length; i++){
         elemek[i].addEventListener("click", function(){ removefromkosar(kosar[i].id) })
     }
 }
