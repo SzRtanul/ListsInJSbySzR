@@ -163,7 +163,7 @@ function removefromkosar(id = -1){ // Törlés a kosárból
 function addToKosar(id=-1){
     let index = bennevan(id);
     if(index==-1){
-        kosar.push({id: id, menny: 0});
+        kosar.push({id: id, menny: 1});
     }
     else{
         kosar[index].menny += 1;
@@ -178,10 +178,11 @@ function kosarFrissit(){
         s += `<p>${listofprice[index].termeknev} : <input type="number" id="fname" name="fname" value="${kosar[i].menny}"> <button class="elemettorol">Töröl</button></p>`
     }
     document.getElementsByClassName("kosar")[0].innerHTML = s;
-    let elemek = document.getElementsByClassName("elemettorol");
+  /*  let elemek = document.getElementsByClassName("elemettorol");
     for(let i = 0; i < elemek.length; i++){
         elemek[i].addEventListener("click", function(){ removefromkosar(kosar[i].id) })
-    }
+    }*/
+    mindenhezeventetad("elemettorol", "click", function(){ removefromkosar(kosar[i].id) })
 }
 
 function bennevan(id = -1){
@@ -259,10 +260,16 @@ function szuroparam(objectMin={
 // Rendezes
 
 // Segédfüggvények
-
-function mindenhovaodair(osztaly = "", s = ""){
-    let elemek = document.getElementsByClassName(osztaly);
+function mindenhovaodair(HTMLosztaly = "", s = ""){
+    let elemek = document.getElementsByClassName(HTMLosztaly);
     for(let i = 0; i < elemek.length; i++){
         elemek[i].innerHTML = s;
+    }
+}
+
+function mindenhezeventetad(HTMLosztaly, esemeny, fuggveny){
+    let elemek = document.getElementsByClassName(HTMLosztaly);
+    for(let i = 0; i < elemek.length; i++){
+        elemek[i].addEventListener(esemeny, fuggveny);
     }
 }
