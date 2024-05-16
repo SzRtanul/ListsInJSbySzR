@@ -155,9 +155,13 @@ function add(price = {
 
 function removefromkosar(id = -1){ // Törlés a kosárból
     let index = bennevan(id);
-    console.log(index)
     if(index >= 0) kosar.splice(index, 1);
     kosarFrissit()
+}
+
+function removefromkosarwitharrayindex(index = -1){ // Törlés a kosárból
+    if(index >= 0) kosar.splice(index, 1);
+    kosarFrissit();
 }
 
 function addToKosar(id=-1){
@@ -175,14 +179,14 @@ function kosarFrissit(){
     let s = "";
     for(let i = 0; i < kosar.length; i++){
         let index = letezik(kosar[i].id);
-        s += `<p>${listofprice[index].termeknev} : <input type="number" id="fname" name="fname" value="${kosar[i].menny}"> <button class="elemettorol">Töröl</button></p>`
+        s += `<p>${listofprice[index].termeknev} : <input type="number" min="1" id="fname" name="fname" value="${kosar[i].menny}"> <button class="elemettorol">Töröl</button></p>`
     }
     document.getElementsByClassName("kosar")[0].innerHTML = s;
   /*  let elemek = document.getElementsByClassName("elemettorol");
     for(let i = 0; i < elemek.length; i++){
         elemek[i].addEventListener("click", function(){ removefromkosar(kosar[i].id) })
     }*/
-    mindenhezeventetad("elemettorol", "click", function(){ removefromkosar(kosar[i].id) })
+    mindenhezeventetad("elemettorol", "click", removefromkosarwitharrayindex)
 }
 
 function bennevan(id = -1){
@@ -270,6 +274,13 @@ function mindenhovaodair(HTMLosztaly = "", s = ""){
 function mindenhezeventetad(HTMLosztaly, esemeny, fuggveny){
     let elemek = document.getElementsByClassName(HTMLosztaly);
     for(let i = 0; i < elemek.length; i++){
-        elemek[i].addEventListener(esemeny, fuggveny);
+        elemek[i].addEventListener(esemeny, function(){ fuggveny(i) });
+    }
+}
+
+function mindenhezeventetad(HTMLosztaly, esemeny, fuggveny, tomb=[{id:-1}]){
+    let elemek = document.getElementsByClassName(HTMLosztaly);
+    for(let i = 0; i < elemek.length; i++){
+        elemek[i].addEventListener(esemeny, function(){ fuggveny(tomb[i].id) });
     }
 }
