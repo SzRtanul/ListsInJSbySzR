@@ -1,59 +1,59 @@
 "use strict"
 //eventToDivizio() //Event működés tesztelése
-let listofpriceIDs = [0,1,32]
+//let listofpriceIDs = [0,1,32]
 let listofprice = [
     {
         id: 0,
         termeknev: "Háromszög",
-        image: "n",
+        image: "",
         ar: 6000
     },
     {
         id: 1,
         termeknev: "Négyszög",
-        image: "n",
+        image: "",
         ar: 7500
     },
     {
         id: 32,
         termeknev: "Ötszög",
-        image: "n",
+        image: "",
         ar: 9000
     },
     {
         id: 33,
         termeknev: "Sokszög",
-        image: "n",
+        image: "",
         ar: 9000
     },
     {
         id: 6,
         termeknev: "Négyzet",
-        image: "n",
+        image: "",
         ar: 9000
     },
     {
         id: 2,
         termeknev: "Rombusz",
-        image: "n",
+        image: "",
         ar: 6000
     },
     {
         id: 3,
         termeknev: "Tetraéder",
-        image: "n",
+        image: "",
         ar: 7500
     },
     {
         id: 4,
         termeknev: "Paralelogramma",
-        image: "n",
+        image: "",
         ar: 9000
     },
     {
         id: 5,
         termeknev: "Deltoid",
-        image: "n",
+        image: "",
         ar: 9000
     },
 ]
@@ -92,6 +92,7 @@ function kiindulGUI(){
     let leptet = 0;
     let s = "";
     for(let i = 0; i < listofprice.length; i++){
+        let idgprice = listofprice[i];
         let zsindex = letezikparam(listofprice[i].id);
         let idgparam = idkWhyParam(listofprice[i].id);
         if(szuro(listofprice[i]) && szuroparam/*                */){
@@ -99,15 +100,17 @@ function kiindulGUI(){
                 s += `<div class="row">`;
             }
             s+=`<div class="card col-md-3 col-sm-6 col-smx-12">` +
-                    `<a href="#" class="card-header text-success">${listofprice[i].termeknev}</a>` +
+                    `<a href="#" class="card-header text-success">${idgprice.termeknev}</a>` +
                     `<div class="card-body">` +
-                    ` <img src="${convImageExist(listofprice[i].image)}" class="img-thumbnail" alt="">` +
+                    ` <img src="${convImageExist(idgprice.image)}" class="img-thumbnail" alt="">` +
                         `<ul class = "">` +
                             `<li>Szélesség: ${idgparam.szelesseg}${zsindex != -1 ? "cm": ""}</li>` +
                             `<li>Hosszúság/Vastagság: ${idgparam.hosszusag}${zsindex !=-1 ? "cm": ""}</li>` +
                             `<li>Magasság: ${idgparam.magassag}${zsindex != -1 ? "cm": ""}</li>` +
                             `<li>Anyag: ${idgparam.anyag}</li>` +
-                            `<li>Tömör: ${idgparam.tomor ? "Igen" : "Nem"}.</li>` +
+                            `<li>Tömör: ${idgparam.tomor ? 
+                                (typeof idgparam.tomor === "boolean" ? "Igen" : "Nincs megadva") 
+                                 : "Nem"}.</li>` +
                         `</ul>` +
                     `</div>` +
                     `<div class="card-footer">` +
@@ -132,10 +135,25 @@ function kosarFrissitGUI(){
     let s = "";
     for(let i = 0; i < kosar.length; i++){
         let index = letezik(kosar[i].id);
-        s += `<p>${listofprice[index].termeknev} : <input type="number" min="1" id="fname" name="fname" value="${kosar[i].menny}"> <button class="elemettorol">Töröl</button></p>`
+        s += `<p><img src="${convImageExist(listofprice[index].image)}" ` +
+        `class="img-thumbnail" alt="">${listofprice[index].termeknev} : `+
+        `<input type="number" class="elemszam" min="1" id="fname${i}" name="fname${i}N" value="${kosar[i].menny}">`+
+        ` <button class="elemettorol">Töröl</button>`+
+        `<span> ${listofprice[index].ar} Ft<span/></p>`
     }
     document.getElementsByClassName("kosar")[0].innerHTML = s;
     mindenhezeventetad("elemettorol", "click", removefromkosarwitharrayindex)
+    mindenhezeventetad("elemszam", "change", elemszamnovelcsokken)
+    kosaradatGUI()
+}
+
+function kosaradatGUI(){
+    let s = `Összeg: ${sumforjsonar(kosar)} Ft`;
+    document.getElementsByClassName("kosaradatok")[0].innerHTML = s;
+}
+
+function termekekGUI(){
+
 }
 
 function idkWhyParam(id){
@@ -183,7 +201,7 @@ function letezikparam(id = -1){
 function removefromkosar(id = -1){ // Törlés a kosárból
     let index = bennevan(id);
     if(index >= 0) kosar.splice(index, 1);
-    kosarFrissitGUI();
+    kosaradatGUI();
 }
 
 function removefromkosarwitharrayindex(index = -1){ // Törlés a kosárból
@@ -212,14 +230,25 @@ function bennevan(id = -1){
     return index;
 }
 
-// Szures
-function szuro(objectMin={
-    termeknev: "Háromszög",
-    image: "n",
-    ar: 6000
-}){
+function elemszamnovelcsokken(i=-1){
+     kosar[i].menny = document.getElementsByClassName("elemszam")[i].value;
+     kosarFrissitGUI()
+}
 
-    return true;
+// Szures
+function szuro(id=-1, params={
+    keresettnevek: [],
+    tiltottnevek: [],
+    minAr: 0,
+    maxAr: 18000000
+}){
+    let zsindex = letezik(id);
+    let idgprice = zsindex!=-1 ? listofprice[zsindex] : {ar: 0};
+    let both = zsindex != -1 && idgprice.ar >= params.minAr && idgprice.ar <= params.maxAr;
+    if(both){
+
+    }
+    return both;
 }
 
 function szuroparam(objectMin={
@@ -237,13 +266,14 @@ function szuroparam(objectMin={
 
 // Képkezelés
 function convImageExist(image_url){
-    return imageExists(image_url) || image_url === "" ? image_url : "kepek/itsnotexist.png";
+    return !imageExists(image_url) || image_url == "" ? "kepek/itsnotexist.png" : image_url;
 }
 
 function imageExists(image_url){
-    let http = new XMLHttpRequest();
+    let http = new XMLHttpRequest(); 
     http.open('HEAD', image_url, false);
     http.send();
+    
     return http.status != 404;
 }
 
@@ -270,6 +300,24 @@ function mindenhezeventetadwitharray(HTMLosztaly, esemeny, fuggveny, tomb=[{id:-
     for(let i = 0; i < elemek.length; i++){
         elemek[i].addEventListener(esemeny, function(){ fuggveny(tomb[i].id) });
     }
+}
+
+function sum(szamok=[]){
+    let sum = 0;
+    for(let i = 0; i<szamok.length; i++){
+        sum += szamok[i];
+    }
+    return sum;
+}
+
+function sumforjsonar(tomb=[{id:-1, menny: -1}]){
+    let sum = 0;
+    let zsindex = -1;
+    for(let i = 0; i<tomb.length; i++){
+        zsindex = letezik(tomb[i].id);
+        sum += zsindex != -1 ? listofprice[zsindex].ar * tomb[i].menny : 0;
+    }
+    return sum;
 }
 
 // Event teszt
