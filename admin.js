@@ -89,13 +89,25 @@ kosar = []
 kiindulGUI();
 
 function kiindulGUI(){
+    let priceparams ={
+        keresettnevek: [],
+        tiltottnevek: [],
+        minAr: 7100,
+        maxAr: 18000000
+    }
+
+    // Szavakat hozzaad
+
+    let priceparamsesparams = {
+
+    }
     let leptet = 0;
     let s = "";
     for(let i = 0; i < listofprice.length; i++){
         let idgprice = listofprice[i];
         let zsindex = letezikparam(listofprice[i].id);
         let idgparam = idkWhyParam(listofprice[i].id);
-        if(szuro(listofprice[i]) && szuroparam/*                */){
+        if(szuro(listofprice[i].id, priceparams) /*&& szuroparam(listofprice[i].id)*/){
             if(leptet == 0){
                 s += `<div class="row">`;
             }
@@ -251,12 +263,20 @@ function szuro(id=-1, params={
     return both;
 }
 
-function szuroparam(objectMin={
-    szelesseg: 0,
-    magassag: 0,
-    hosszusag: 0,
+function szuroparam(id=-1, objectMin={
+    szamitsonaszelesseg: false,
+    minszelesseg: 0,
+    maxszelesseg: 0,
+    szamitsonamagassag: false,
+    minmagassag: 0,
+    maxmagassag: 0,
+    szamitsonahosszusag: false,
+    minhosszusag: 0,
+    maxhosszusag: 0,
+    szamitsonazanyag: false,
     anyag: "",
-    tomor: false
+    szamitsonatomorseg: false,
+    tomor: null
 }){
     return true;
 }
