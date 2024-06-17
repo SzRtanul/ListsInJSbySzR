@@ -115,7 +115,7 @@ function kiindulGUI(){
                     `<a href="#" class="card-header text-success">${idgprice.termeknev}</a>` +
                     `<div class="card-body">` +
                     ` <img src="${convImageExist(idgprice.image)}" class="img-thumbnail" alt="">` +
-                        `<ul class = "">` +
+                        `<ul class = "lejon">` +
                             `<li>Szélesség: ${idgparam.szelesseg}${zsindex != -1 ? "cm": ""}</li>` +
                             `<li>Hosszúság/Vastagság: ${idgparam.hosszusag}${zsindex !=-1 ? "cm": ""}</li>` +
                             `<li>Magasság: ${idgparam.magassag}${zsindex != -1 ? "cm": ""}</li>` +
@@ -258,7 +258,9 @@ function szuro(id=-1, params={
     let idgprice = zsindex!=-1 ? listofprice[zsindex] : {ar: 0};
     let both = zsindex != -1 && idgprice.ar >= params.minAr && idgprice.ar <= params.maxAr;
     if(both){
-
+        for(let i = 0; i < keresettnevek; i++){
+            
+        }
     }
     return both;
 }

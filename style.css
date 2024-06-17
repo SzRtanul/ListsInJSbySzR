@@ -12,3 +12,11 @@ header h1{
 header{
     
 }
+
+.lejon{
+    display: none;
+}
+
+.lejon:hover{
+    display: block;
+}
